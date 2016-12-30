@@ -1,0 +1,31 @@
+body {
+    background-color: #edecec;
+}
+
+form {
+    text-align: center;
+    max-width: 100%;
+}
+
+form .mdl-textfield {
+    width: 96% !important;
+}
+
+.warning-card{
+    height: 20px;
+}
+
+.title {
+    margin-top: 10vh;
+    text-align: center !important;
+    font-size: 35px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #666;
+}
+
+.sign-in-card {
+    margin-top: 3vh;
+}
