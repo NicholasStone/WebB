@@ -1,5 +1,5 @@
 .idea/
-WebB.iml
+*.iml
 /out
 /web/WEB-INF/lib
 *.properties
