@@ -7,4 +7,3 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <script src="//cdn.bootcss.com/material-design-lite/1.3.0/material.min.js"></script>
-<script src="//cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>

@@ -39,4 +39,12 @@
         <servlet-name>DeleteServlet</servlet-name>
         <url-pattern>/admin/delete/*</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>FileServlet</servlet-name>
+        <servlet-class>cn.blog.servlet.backend.FileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>FileServlet</servlet-name>
+        <url-pattern>/admin/file/upload</url-pattern>
+    </servlet-mapping>
 </web-app>

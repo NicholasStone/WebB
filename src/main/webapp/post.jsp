@@ -24,7 +24,7 @@
 <head>
     <title>Posts</title>
     <%@include file="WEB-INF/partial/styles.jsp" %>
-    <link rel="stylesheet" href="static/css/post.css">
+    <link rel="stylesheet" href="static/css/backend.css">
 </head>
 <body>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
@@ -82,7 +82,7 @@
         </div>
     </main>
 </div>
-<a id="new-post" href="edit.jsp" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-color--accent">
+<a href="edit.jsp" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-color--accent new">
     <i class="material-icons">add</i>
 </a>
 <%@include file="WEB-INF/partial/scripts.jsp" %>

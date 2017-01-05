@@ -9,20 +9,25 @@ import java.io.IOException;
 public class Image {
     private String BASE_DIR       = null;
     private String IMAGE_DIR_PATH = "static/img/";
-    private File   imageFolder    = null;
 
-    public Image(String base) {
+    public File getFolder() {
+        return folder;
+    }
+
+    private File folder = null;
+
+    public Image(String base, String folderPath) {
         BASE_DIR = base;
-        this.imageFolder = new File(BASE_DIR + IMAGE_DIR_PATH);
+        this.folder = new File(BASE_DIR + IMAGE_DIR_PATH + folderPath);
     }
 
     public boolean isExist() {
-        return this.imageFolder.exists();
+        return this.folder.exists();
     }
 
     public File[] getListFiles() {
-        if (this.imageFolder.isDirectory()) {
-            return this.imageFolder.listFiles();
+        if (this.folder.isDirectory()) {
+            return this.folder.listFiles();
         } else {
             return null;
         }
