@@ -35,4 +35,11 @@ public abstract class BackendServlet extends HttpServlet {
         AlertMessage.setSuccessMessage(request.getSession(), message);
         response.sendRedirect("/post.jsp");
     }
+
+    protected void handleSuccess(HttpServletRequest request, HttpServletResponse response, String message, String redirect) throws IOException {
+        AlertMessage.setSuccessMessage(request.getSession(), message);
+        response.sendRedirect(redirect);
+    }
+
+
 }

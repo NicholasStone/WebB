@@ -100,7 +100,8 @@
                                     <i class="material-icons">search</i>
                                 </button>
                                 <%}%>
-                                <a href="#" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
+                                <a href="${pageContext.request.contextPath}/admin/delete?path=<%=path%>/<%=file.getName()%>"
+                                   class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon">
                                     <i class="material-icons">delete</i>
                                 </a>
                             </td>
@@ -137,7 +138,7 @@
                 <input class="mdl-textfield__input" placeholder="文件" type="text" id="uploadFile" accept="image/*"
                        readonly/>
                 <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
-                    <i class="material-icons">attach_file</i><input type="file" id="uploadBtn">
+                    <i class="material-icons">attach_file</i><input type="file" id="uploadBtn" name="file">
                 </div>
             </div>
         </form>

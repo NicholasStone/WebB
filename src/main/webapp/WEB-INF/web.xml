@@ -37,7 +37,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>DeleteServlet</servlet-name>
-        <url-pattern>/admin/delete/*</url-pattern>
+        <url-pattern>/admin/delete</url-pattern>
     </servlet-mapping>
     <servlet>
         <servlet-name>FileServlet</servlet-name>

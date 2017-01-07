@@ -21,18 +21,22 @@ public class FileServlet extends BackendServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        http://stackoverflow.com/questions/2422468/how-to-upload-files-to-server-using-jsp-servlet
 //        http://www.codejava.net/java-ee/servlet/java-file-upload-example-with-servlet-30-api
-        String uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_PATH;
+        String uploadPath = getServletContext().getRealPath("") + UPLOAD_PATH + File.separator + request.getParameter("folder");
         File   folder     = new File(uploadPath);
         if (!folder.exists()) {
             folder.mkdirs();
         }
 
+        if (request.getParts().isEmpty()){
+            handleError(request,response,new Exception("upload empty"),"/file.jsp");
+        }
+
         String fileName = null;
         for (Part part : request.getParts()) {
             fileName = this.getFileName(part);
-            part.write(uploadPath + File.separator + fileName);
+            part.write(uploadPath + fileName);
         }
-        handleSuccess(request, response, "文件上传成功" + uploadPath + File.separator + fileName);
+        handleSuccess(request, response, "文件上传成功" + uploadPath + File.separator + fileName, "/file.jsp");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -41,7 +45,6 @@ public class FileServlet extends BackendServlet {
 
     private String getFileName(Part part) {
         String contentDisp = part.getHeader("content-disposition");
-        System.out.println("content-disposition header= " + contentDisp);
         String[] tokens = contentDisp.split(";");
         for (String token : tokens) {
             if (token.trim().startsWith("filename")) {
