@@ -25,6 +25,12 @@ public abstract class BackendServlet extends HttpServlet {
         response.sendRedirect("/edit.jsp");
     }
 
+    protected void handleError(HttpServletRequest request, HttpServletResponse response, Exception e, String redirect) throws IOException {
+        AlertMessage.setErrorMessage(request.getSession(), e.getMessage());
+        AlertMessage.setErrorStackTrace(request.getSession(), e.getStackTrace());
+        response.sendRedirect(redirect);
+    }
+
     protected void handleSuccess(HttpServletRequest request, HttpServletResponse response, String message) throws IOException {
         AlertMessage.setSuccessMessage(request.getSession(), message);
         response.sendRedirect("/post.jsp");
