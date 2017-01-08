@@ -8,14 +8,6 @@
         <welcome-file>index.jsp</welcome-file>
     </welcome-file-list>
     <servlet>
-        <servlet-name>CatalogServlet</servlet-name>
-        <servlet-class>cn.blog.servlet.frontend.CatalogServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>CatalogServlet</servlet-name>
-        <url-pattern>/index</url-pattern>
-    </servlet-mapping>
-    <servlet>
         <servlet-name>AuthServlet</servlet-name>
         <servlet-class>cn.blog.servlet.backend.AuthServlet</servlet-class>
     </servlet>
