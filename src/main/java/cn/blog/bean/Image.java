@@ -18,7 +18,7 @@ public class Image {
 
     public Image(String base, String folderPath) {
         BASE_DIR = base;
-        this.folder = new File(BASE_DIR + IMAGE_DIR_PATH + folderPath);
+        this.folder = new File(BASE_DIR + File.separator + IMAGE_DIR_PATH + File.separator + folderPath);
     }
 
     public boolean isExist() {
@@ -34,14 +34,11 @@ public class Image {
     }
 
     /**
-     * @param path   Relative path, compare with image folder
-     * @param folder New folder name
      * @return Weather operation is succeed
      * @throws IOException IOException
      */
-    public boolean createFolder(String path, String folder) throws IOException {
-        File file = new File(BASE_DIR + IMAGE_DIR_PATH + path + folder);
-        return file.mkdirs();
+    public boolean createFolder() throws IOException {
+        return this.folder.mkdirs();
     }
 
     public String getFolderPath() {

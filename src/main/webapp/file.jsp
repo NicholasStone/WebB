@@ -34,6 +34,15 @@
                 <div class="mdl-card__title">
                     <h2 class="mdl-card__title-text">文章管理</h2>
                 </div>
+                <div class="mdl-card__menu">
+                    <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="new">
+                        <i class="material-icons">add</i>
+                    </button>
+                    <ul class="mdl-menu mdl-js-menu mdl-js-ripple-effect mdl-menu--bottom-right" for="new">
+                        <li class="mdl-menu__item" id="new-image">上传图片</li>
+                        <li class="mdl-menu__item" id="new-folder">新建文件夹</li>
+                    </ul>
+                </div>
                 <div class="mdl-card__actions">
                     <ul class="breadcrumb folder-path">
                         <%
@@ -116,9 +125,9 @@
         </div>
     </main>
 </div>
-<button id="new-image" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-color--accent new">
-    <i class="material-icons">add</i>
-</button>
+<%--<button id="new-image" class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--fab mdl-color--accent new">--%>
+<%--<i class="material-icons">add</i>--%>
+<%--</button>--%>
 <dialog class="mdl-dialog show-image" id="show">
     <h4 class="mdl-dialog__title title"></h4>
     <div class="mdl-dialog__content">
@@ -135,7 +144,7 @@
               action="${pageContext.request.contextPath}/admin/file/upload?folder=<%=path%>"
               method="post">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--file">
-                <input class="mdl-textfield__input" placeholder="文件" type="text" id="uploadFile" accept="image/*"
+                <input class="mdl-textfield__input" placeholder="文件" type="text" id="uploadFile"
                        readonly/>
                 <div class="mdl-button mdl-button--primary mdl-button--icon mdl-button--file">
                     <i class="material-icons">attach_file</i><input type="file" id="uploadBtn" name="file">
@@ -148,36 +157,67 @@
         <button class="mdl-button close">关闭</button>
     </div>
 </dialog>
+<dialog class="mdl-dialog" id="folder">
+    <h4 class="mdl-dialog__title">图片</h4>
+    <div class="mdl-dialog__content">
+        <form action="${pageContext.request.contextPath}/admin/file/new" method="get" id="folder-form">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                <input type="text" name="name" id="name" class="mdl-textfield__input">
+                <label for="name" class="mdl-textfield__label">文件夹名</label>
+            </div>
+            <input type="text" name="folder" value="<%=path%>" hidden>
+        </form>
+    </div>
+    <div class="mdl-dialog__actions">
+        <button class="mdl-button" form="folder-form">提交</button>
+        <button class="mdl-button close">关闭</button>
+    </div>
+</dialog>
 <%@include file="WEB-INF/partial/scripts.jsp" %>
 <script src="//cdn.bootcss.com/dialog-polyfill/0.4.5/dialog-polyfill.min.js"></script>
 <script>
+    function registerDialog(dom) {
+        if (!dom.showModal) {
+            dialogPolyfill.registerDialog(dom);
+        }
+    }
     var imageDialog = document.querySelector("#show");
-    var show = document.querySelectorAll(".show-dialog");
     var uploadDialog = document.querySelector("#upload");
+    var folderDialog = document.querySelector("#folder");
+    var show = document.querySelectorAll(".show-dialog");
     var newImage = document.querySelector("#new-image");
-    if (!imageDialog.showModal) {
-        dialogPolyfill.registerDialog(imageDialog);
-    }
-    if (!uploadDialog.showModal) {
-        dialogPolyfill.registerDialog(imageDialog);
-    }
+    var newFolder = document.querySelector("#new-folder");
+
+
+    registerDialog(imageDialog);
+    registerDialog(folderDialog);
+    registerDialog(uploadDialog);
+
     var deployImage = function () {
-        imageDialog.querySelector("img").src = this.dataset.imageUrl;
-        imageDialog.querySelector(".title").innerHTML = this.dataset.imageName;
+        imageDialog.querySelector("img").src = this.dataset.image;
         imageDialog.showModal();
     };
     for (var i = 0, len = show.length; i < len; i++) {
         show[i].addEventListener("click", deployImage);
     }
+
     newImage.addEventListener("click", function () {
         uploadDialog.showModal();
     });
+    newFolder.addEventListener("click", function () {
+        folderDialog.showModal();
+    });
+
     imageDialog.querySelector(".close").addEventListener("click", function () {
         imageDialog.close();
     });
     uploadDialog.querySelector(".close").addEventListener("click", function () {
         uploadDialog.close();
     });
+    folderDialog.querySelector(".close").addEventListener("click", function () {
+        folderDialog.close();
+    });
+
     document.getElementById("uploadBtn").onchange = function () {
         document.getElementById("uploadFile").value = this.files[0].name;
     };
