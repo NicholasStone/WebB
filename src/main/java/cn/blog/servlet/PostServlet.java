@@ -1,7 +1,6 @@
-package cn.blog.servlet.backend;
+package cn.blog.servlet;
 
 import cn.blog.bean.Post;
-import cn.blog.util.AlertMessage;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;

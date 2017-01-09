@@ -1,7 +1,4 @@
-package cn.blog.servlet.backend;
-
-import cn.blog.bean.Post;
-import cn.blog.util.AlertMessage;
+package cn.blog.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * Created by nicholas on 16-12-27.

@@ -1,4 +1,4 @@
-package cn.blog.servlet.backend;
+package cn.blog.servlet;
 
 import cn.blog.bean.User;
 import cn.blog.util.Encrypt;
